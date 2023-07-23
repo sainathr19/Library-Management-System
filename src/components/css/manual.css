@@ -1,0 +1,43 @@
+.container{
+    max-width: 500px;
+    margin-top: 30px;
+}
+.container-logs{
+    max-width: 100%;
+    margin-top:30px;
+    margin-left: 75px;
+    margin-right: 75px;
+}
+.issue-btn{
+    display: flex;
+    justify-content: center;
+}
+.container4{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 75px;
+    margin-right: 75px;
+}
+.card-text{
+    text-align: center;
+}
+.Num{
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bolder;
+    font-size: larger;
+}
+.credits{
+    margin:150px;
+}
+.error{
+    text-align: center;
+}
+.error-rollno{
+    text-align: center;
+    color: aqua;
+
+}
+.error-bookid{
+    color: blue;
+}
