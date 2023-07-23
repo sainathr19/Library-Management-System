@@ -1,12 +1,14 @@
 from flask import Flask
-import datetime
+from datetime import datetime
 import json
-
+from flask_cors import CORS
+from flask import request
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 import json
 # Flask app Creation
 api = Flask(__name__)
+CORS(api)
 
 # Database Connection
 uri = "mongodb+srv://sainath19:eVZy68zqISUXNdLh@cluster0.mez8kyv.mongodb.net/?retryWrites=true&w=majority"
@@ -21,35 +23,48 @@ logs = db["logs"]
 data = db["data"]
 
 
-# Test data
-data = {
-    "rollno": "21AT1A3519",
-    "bookid": "1001",
-    "issuedate": datetime.datetime.now(),
-    "returndate": datetime.datetime.now()+datetime.timedelta(days=14),
-    "status": "Not Returned"
-}
-
-data2 = {
-    "rollno": "21AT1A3519",
-    "bookid": "1001"
-}
+def makelogsdata(rollno, bookid):
+    data = {
+        "rollno": rollno,
+        "bookid": [bookid],
+        "time": datetime.time(),
+    }
+    return data
 
 
+def makedata(rollno, bookid):
+    data = {
+        "rollno": rollno,
+        "bookid": [bookid],
+        "issuedate": datetime.now(),
+        "returndate": datetime.now()+datetime.timedelta(days=14),
+        "status": "Not Returned"
+
+    }
+    return data
 # API routes
+
+
 @api.route("/")
 def root():
     return "Hello test"
 
 
-@api.route("/issue")
+@api.route("/issue", methods=["POST"])
 def issue_book():
     try:
-        db.logs.insert_one(data)
+        rollno = request.args.get("rollno")
+        bookid = request.args.get("bookid")
+        if (db.data.count_documents({"rollno": rollno}) > 0):
+            db.data.update_one({"rollno": rollno}, {
+                               "$addToSet": {"bookid": bookid}})
+        else:
+            db.logs.insert_one(makelogsdata(rollno, bookid))
+            db.data.insert_one(makedata(rollno, bookid))
         return {"response": "Success"}
     except Exception as e:
         print(e)
-        return "An error Occured"
+        return {"response": "Error"}
 
 
 @api.route("/return")

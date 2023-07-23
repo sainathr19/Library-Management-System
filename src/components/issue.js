@@ -1,13 +1,25 @@
 import "./css/manual.css";
 import NavBar from "./navabar";
 import { useState } from "react";
+import axios from "axios";
+
 export default function Issue() {
   const [rollno, setrollno] = useState("");
   const [bookid, setbookid] = useState("");
-  let issuesubmit = (e) => {
+  const [response, setresponse] = useState({});
+  let issuesubmit = async (e) => {
     e.preventDefault();
-    const issueobj = { rollno, bookid };
-    console.log(issueobj);
+    const link =
+      "http://127.0.0.1:5000/issue?rollno=" + rollno + "&bookid=" + bookid;
+    await axios
+      .post(link)
+      .then((res) => {
+        setresponse(res);
+      })
+      .catch((e) => {
+        setresponse(e);
+      });
+    console.log(response["data"]["response"]);
   };
   return (
     <>

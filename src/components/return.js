@@ -1,13 +1,23 @@
 import "./css/manual.css";
 import NavBar from "./navabar";
 import { useState } from "react";
+import axios from "axios";
+import { type } from "@testing-library/user-event/dist/type";
 export default function Return() {
   const [rollno, setrollno] = useState("");
   const [bookid, setbookid] = useState("");
+  const [result, submitresult] = useState("");
   let returnsubmit = (e) => {
     e.preventDefault();
-    const returnobj = { rollno, bookid };
-    console.log(returnobj);
+    axios
+      .get("http://127.0.0.1:5000/return")
+      .then((res) => {
+        submitresult(res);
+        console.log(result["status"]);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
   let bookidinp = (e) => {
     if (e.target.value === "") {

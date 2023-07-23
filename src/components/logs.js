@@ -11,40 +11,31 @@ export default function Logs() {
         <table className="table">
           <thead>
             <tr>
+              <th scope="col">Time</th>
               <th scope="col">Rollno</th>
               <th scope="col">Book id</th>
-              <th scope="col">Issue Date</th>
-              <th scope="col">Return Date</th>
-              <th scope="col">Status</th>
-              <th scope="col">Actions</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
             <tr>
+              <td>12-03-2023</td>
               <td scope="row">21AT1A3519</td>
               <td>1001</td>
-              <td>12-03-2023</td>
-              <td>26-03-2023</td>
-              <td>Not Returned</td>
-              <td>Coming soon</td>
+              <td>Return</td>
             </tr>
             <tr>
+              <td>12-03-2023</td>
               <td scope="row">21AT1A3537</td>
               <td>1005</td>
-              <td>12-03-2023</td>
-              <td>26-03-2023</td>
-              <td>Returned</td>
-              <td>Coming soon</td>
+              <td>Issue</td>
             </tr>
             <tr>
+              <td>12-03-2023</td>
               <td scope="row">21AT1A3507</td>
               <td>1002</td>
-              <td>12-03-2023</td>
-              <td>26-03-2023</td>
-              <td>Not Returned</td>
-              <td>Coming soon</td>
+              <td>Issue</td>
             </tr>
-            <Logrow />
           </tbody>
         </table>
       </div>
