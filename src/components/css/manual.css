@@ -1,12 +1,6 @@
 .container{
-    max-width: 500px;
+    width: 500px;
     margin-top: 30px;
-}
-.container-logs{
-    max-width: 100%;
-    margin-top:30px;
-    margin-left: 75px;
-    margin-right: 75px;
 }
 .issue-btn{
     display: flex;
@@ -18,18 +12,13 @@
     margin-left: 75px;
     margin-right: 75px;
 }
-.card-text{
-    text-align: center;
-}
 .Num{
     text-align: center;
     margin-top: 20px;
     font-weight: bolder;
     font-size: larger;
 }
-.credits{
-    margin:150px;
-}
+
 .error{
     text-align: center;
 }
@@ -40,4 +29,43 @@
 }
 .error-bookid{
     color: blue;
+}
+.searchbox{
+    display: flex;
+    justify-content: center;
+}
+.credits{
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.cardbox{
+    background-color: aqua;
+    border: 2px solid black;
+    height: 400px;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+.pimg{
+    height: 175px;
+    width: 200px;
+}
+.logpage{
+    background-color: rgb(193, 196, 196);
+    width: 1200px;
+    border: solid 2px black;
+    border-radius: 15px;
+    word-wrap: none;
+}
+.logb{
+    background-color: bisque;
+    display: flex;
+    justify-content: center;
+}
+.loghead{
+    text-align: center;
 }

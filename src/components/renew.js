@@ -4,20 +4,21 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export default function Issue() {
+export default function Renew() {
   const [rollno, setrollno] = useState("");
   const [bookid, setbookid] = useState("");
   const [response, setresponse] = useState({
     data: {
-      response: "S",
+      response: "None",
     },
   });
-  let issuesubmit = async (e) => {
+
+  let renewsubmit = (e) => {
     e.preventDefault();
-    const link =
-      "http://127.0.0.1:5000/issue?rollno=" + rollno + "&bookid=" + bookid;
-    await axios
-      .post(link)
+    axios
+      .post(
+        "http://127.0.0.1:5000/renew?rollno=" + rollno + "&bookid=" + bookid
+      )
       .then((res) => {
         setresponse(res);
       })
@@ -27,19 +28,17 @@ export default function Issue() {
   };
   useEffect(() => {
     if (response["data"]["response"] === "Success") {
-      toast.success("Book issued", { autoClose: 2000 });
-    } else if (response["data"]["response"] === "Error") {
-      toast.error("Try Again", { autoClose: 2000 });
-    } else if (response["data"]["response"] === "AlreadyIssued") {
-      toast.error("Book is already Issued", { autoClose: 2000 });
+      toast.success("Book renewed", { autoClose: 2000 });
+    } else if (response["data"]["response"] === "NotFound") {
+      toast.error("No such Book is Issued", { autoClose: 2000 });
     }
-    console.log(response["data"]);
+    console.log(response);
   }, [response]);
   return (
     <>
       <NavBar />
       <div className="container">
-        <form onSubmit={issuesubmit}>
+        <form onSubmit={renewsubmit}>
           <div className="form-floating mb-3">
             <input
               name="rollno"
@@ -62,7 +61,7 @@ export default function Issue() {
           </div>
           <div className="issue-btn my-4">
             <button className="btn btn-outline-success" type="submit">
-              Issue Book
+              Renew Book
             </button>
           </div>
         </form>
