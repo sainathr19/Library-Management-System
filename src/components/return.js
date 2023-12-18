@@ -1,5 +1,4 @@
 import "./css/manual.css";
-import NavBar from "./navabar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -37,7 +36,6 @@ export default function Return() {
 
   return (
     <>
-      <NavBar />
       <div className="container">
         <form onSubmit={returnsubmit}>
           <div className="form-floating mb-3">

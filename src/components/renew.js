@@ -1,5 +1,4 @@
 import "./css/manual.css";
-import NavBar from "./navabar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -36,7 +35,6 @@ export default function Renew() {
   }, [response]);
   return (
     <>
-      <NavBar />
       <div className="container">
         <form onSubmit={renewsubmit}>
           <div className="form-floating mb-3">

@@ -1,10 +1,6 @@
-import React from "react";
-import NavBar from "./navabar";
-
 export default function Stats() {
   return (
     <>
-      <NavBar />
       <div className="container4">
         <div
           className="container card"

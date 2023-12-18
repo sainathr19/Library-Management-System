@@ -134,3 +134,16 @@ def logs():
     for x in db.logdata.find({}, {"_id": False}).sort("_id", -1):
         alldata.append(x)
     return alldata
+
+
+@api.route("/search", methods=["GET"])
+def search():
+    try:
+        data = []
+        rollno = request.args.get("rollno")
+        for x in db.logdata.find({"rollno": rollno.upper()}, {"_id": False}).sort("_id", -1):
+            data.append(x)
+        return data
+    except Exception as e:
+        print(e)
+        return e

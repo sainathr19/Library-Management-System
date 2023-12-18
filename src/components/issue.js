@@ -1,5 +1,4 @@
 import "./css/manual.css";
-import NavBar from "./navabar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -12,11 +11,12 @@ export default function Issue() {
       response: "S",
     },
   });
-  let issuesubmit = async (e) => {
+
+  let issuesubmit = (e) => {
     e.preventDefault();
     const link =
       "http://127.0.0.1:5000/issue?rollno=" + rollno + "&bookid=" + bookid;
-    await axios
+    axios
       .post(link)
       .then((res) => {
         setresponse(res);
@@ -33,11 +33,10 @@ export default function Issue() {
     } else if (response["data"]["response"] === "AlreadyIssued") {
       toast.error("Book is already Issued", { autoClose: 2000 });
     }
-    console.log(response["data"]);
+    console.log(response);
   }, [response]);
   return (
     <>
-      <NavBar />
       <div className="container">
         <form onSubmit={issuesubmit}>
           <div className="form-floating mb-3">
@@ -46,7 +45,9 @@ export default function Issue() {
               type="text"
               className="form-control"
               id="rollno"
-              onChange={(e) => setrollno(e.target.value)}
+              onChange={(e) => {
+                setrollno(e.target.value);
+              }}
             />
             <label htmlFor="rollno">Roll Number</label>
           </div>

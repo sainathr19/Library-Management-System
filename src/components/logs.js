@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import NavBar from "./navabar";
 import "./css/manual.css";
 import axios from "axios";
 
@@ -19,10 +18,8 @@ export default function Logs() {
   useEffect(() => {
     getdata();
   }, []);
-  console.log(data);
   return (
     <>
-      <NavBar></NavBar>
       <h3 class="loghead my-2">Library Logs</h3>
       <div class="logb">
         <div className="logpage">
